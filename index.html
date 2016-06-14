@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="Stu">
+<head >
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/index.css">
+</head>
+<body ng-controller="mainC">
+
+
+
+<nav id="nav">
+  <div class="header">
+
+    <span><div class="img"></div></span>
+    <p>提醒事项</p>
+    <i><div class="img"></div></i>
+    <div class="add" ng-click="addR()">
+      <div class="img"></div>
+    </div>
+  </div>
+  <ul id="remind-list">
+    <li class="plan">
+      <span class="color"><div class="img"></div></span>
+      <p>已计划</p>
+    </li>
+     <li class="item" data-role="{{v.theme}}" ng-repeat="v in todos" ng-class="{'click':v===currentT,{{v.theme}}:1}" ng-click="showinfo($index)">
+      <span class="color"><div class="img"></div></span>
+      <p>{{v.name}}<i><span class="wifi"></span></i></p>
+    </li>
+    <!--<li class="item green" data-role="green">
+      <span class="color"><div class="img"></div></span>
+
+      <p>已计划 <i><span class="wifi"></span></i></p>
+
+    </li>
+    <li class="item blue" data-role="blue">
+      <span class="color"><div class="img"></div></span>
+      <p>已计划 <i><span class="wifi"></span></i></p>
+
+    </li>
+    <li class="item yellow" data-role="yellow">
+      <span class="color"><div class="img"></div></span>
+      <p>已计划 <i><span class="wifi"></span></i></p>
+
+    </li>
+    <li class="item brown" data-role="brown">
+      <span class="color"><div class="img"></div></span>
+      <p>已计划 <i><span class="wifi"></span></i></p>
+
+    </li>
+    <li class="item pink" data-role="pink">
+      <span class="color"><div class="img"></div></span>
+      <p>已计划 <i><span class="wifi"></span></i></p>
+
+    </li>
+    <li class="item orange" data-role="orange">
+      <span class="color"><div class="img"></div></span>
+      <p>已计划 <i><span class="wifi"></span></i></p>
+
+    </li> -->
+
+
+  </ul>
+
+</nav>
+<section id="section">
+  <nav class="search"></nav>
+  <section class="head-inner" style="display:none">
+
+  </section>
+  <section class="item-inner" >
+    <div class="item-wrapper" ng-class="currentT.theme" >
+      <section class="new-list">
+        <p class="listname">{{currentT.name}}</p>
+        <p class="op ">选项</p>
+        <section class="chip">
+          <div class="chip-inner">
+            
+          </div>
+        </section>
+      </section>
+      <div class="list-container">
+        <span class="hasdone" ng-init="false" ng-class="{'show-hide':flag}" ng-click="flag=!flag" ><div class="img"></div></span>
+        <div class="done">
+          <p>已完成 ： </p>
+          <p class="num" ng-bind="showNum()"></p>
+          <p> 项 </p>
+          <span class="clear" ng-click="deleteS()">清除已完成事项</span>
+        </div>
+        <div class="savedate">2016 年 6 月 5 日 星期日</div>
+        <ul class="project-list-hasdone" >
+          <li class="savehasdone" ng-repeat="v in currentT.shixiang" ng-show="v.state" ng-class="currentT.theme">
+            <span class="show" ng-click="v.state=false">
+              <div class="img"></div>
+            </span>
+            <div class="inputwrap">
+            <input type="text" value="{{v.name}}" ng-model="v.name" value="v.name" ng-blur="v.edit=false">
+          </div>
+          </li>
+        </ul>
+        <ul class="project-list">
+          <li ng-repeat="v in currentT.shixiang" ng-class="{'edit':v.edit}" ng-click="v.edit=true" ng-show="!v.state">
+            <span class="show" ng-click="v.state=true">
+              <div class="img"></div>
+            </span>
+            <div class="inputwrap">
+            <input type="text" value="{{v.name}}" ng-model="v.name" value="v.name" ng-change="saveData()" ng-blur="v.edit=false"></div>
+            <p class="detial">详细信息</p>
+          </li>
+        </ul>
+        <div class="new-project" ng-click="addShi()" >
+          <p>新项目...</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+</section>
+
+</body>
+<script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+
+<script src="js/index.js"></script>
+</html>
